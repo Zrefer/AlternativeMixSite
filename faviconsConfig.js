@@ -1,5 +1,5 @@
 module.exports = {
-  logo: "./public/favicon.png",
+  logo: "./public/images/favicon.png",
   outputPath: "./assets/icons/",
   prefix: "./assets/icons/",
   inject: true,

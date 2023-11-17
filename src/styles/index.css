@@ -1,0 +1,21 @@
+@import-normalize;
+
+body {
+  background-image: url("../../public/images/background.png");
+  color: #CCC;
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+a {
+  color: #CCC;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .2s ease-in;
+}
+
+a:hover {
+  opacity: .8;
+}

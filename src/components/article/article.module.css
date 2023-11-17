@@ -1,0 +1,114 @@
+.article {
+    background: rgba(255, 255, 255, .075);
+    border-radius: 1em;
+    color: #DDD;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.title::before {
+    background-image: url(../../../public/images/book.png);
+    background-size: cover;
+    content: "";
+    display: inline-block;
+    height: 36px;
+    margin-right: 8px;
+    vertical-align: middle;
+    width: 36px;
+}
+
+.title {
+    align-self: center;
+    color: #EEE;
+    font-size: 27px;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 16px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.imageBox {
+    border-radius: 15px;
+    float: left;
+    height: 200px;
+    margin: 0 16px 16px 0;
+    overflow: hidden;
+    width: 200px;
+}
+
+.image {
+    transition: transform .3s ease-in-out;
+}
+
+.article:hover .image {
+    transform: scale(1.1);
+}
+
+.text {
+    display: inline;
+    font-size: 16px;
+    line-height: 27px;
+    margin: 0;
+    vertical-align: top;
+    white-space: pre-line;
+}
+
+.bottom {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.actions {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+}
+
+.button {
+    background: rgba(255, 255, 255, .1);
+    border: none;
+    border-radius: 1em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .35);
+    color: inherit;
+    cursor: pointer;
+    height: 25px;
+    line-height: 1;
+    transition: background-color .2s ease-in;
+    width: 50px;
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, .25);
+}
+
+.button::before {
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    display: inline-block;
+    height: 15px;
+    line-height: 1;
+    margin-right: 4px;
+    vertical-align: middle;
+    width: 15px;
+}
+
+.likeBtn::before {
+    background-image: url(../../../public/images/like-icon.png);
+}
+
+.commentBtn::before {
+    background-image: url(../../../public/images/comment-icon.png);
+}
+
+.likeBtnActive::before {
+    background-image: url(../../../public/images/liked-icon.png);
+}
+
+.pubDate {
+    font-size: 14px;
+}
