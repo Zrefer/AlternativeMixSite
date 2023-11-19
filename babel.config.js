@@ -1,8 +1,18 @@
 module.exports = {
-  plugins: ["react-refresh/babel"],
+  plugins: [
+    "react-refresh/babel",
+    [
+      "babel-plugin-named-asset-import",
+      {
+        loaderMap: {
+          svg: {
+            ReactComponent: "@svgr/webpack?-svgo,+titleProp,+ref![path]",
+          },
+        },
+      },
+    ],
+  ],
   presets: [
-    ["@babel/preset-react"],
-    ["babel-plugin-named-asset-import"],
     [
       "@babel/preset-env",
       {
@@ -15,5 +25,6 @@ module.exports = {
         },
       },
     ],
+    ["@babel/preset-react"],
   ],
 };

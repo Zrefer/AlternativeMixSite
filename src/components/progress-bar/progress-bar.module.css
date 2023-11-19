@@ -26,10 +26,7 @@
 .info {
     align-items: center;
     display: flex;
-    font-size: 14px;
-    font-weight: 400;
     justify-content: space-between;
-    line-height: 1.25;
     margin-top: 4px;
 }
 

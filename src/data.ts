@@ -1,5 +1,6 @@
 import { IArticlesResponse } from "./types/article";
 import { IMonitoringResponse } from "./types/monitoring";
+import { IUserResponse } from "./types/user";
 
 export const articles: IArticlesResponse = {
   status: 0,
@@ -95,7 +96,7 @@ export const articles: IArticlesResponse = {
   ],
 };
 
-export const user = {
+export const user: IUserResponse = {
   status: 0,
   msg: "",
   data: {
