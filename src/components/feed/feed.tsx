@@ -1,14 +1,21 @@
 import { FC } from "react";
-import { articles } from "../../data";
 import styles from "./feed.module.css";
 import Article from "../article/article";
+import { RootState } from "../../services/store";
+import { useSelector } from "react-redux";
+
+const feedSelector = (store: RootState) => {
+  return store.feedStore;
+};
 
 const Feed: FC = () => {
+  const feed = useSelector(feedSelector);
+
   return (
     <section>
       <ul className={styles.feed}>
-        {articles.data &&
-          articles.data[0].articles.map((article) => (
+        {feed.articles.length > 0 &&
+          feed.articles.map((article) => (
             <li key={article.id} className={styles.feedItem}>
               <Article article={article} />
             </li>

@@ -1,10 +1,24 @@
-import { FC } from "react";
-import styles from "./app.module.css";
+import { FC, useEffect } from "react";
 import Header from "../header/header";
 import Content from "../content/content";
 import Footer from "../footer/footer";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../../services/user/actions";
+import { AppDispatch } from "../../services/store";
+import userSlice from "../../services/user/slices";
+import { fetchFeed } from "../../services/feed/actions";
 
 const App: FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("access-token");
+    if (accessToken) dispatch(fetchUser(accessToken));
+    else dispatch(userSlice.actions.tokenAbsent());
+
+    dispatch(fetchFeed(1));
+  }, [dispatch]);
+
   return (
     <>
       <Header />
