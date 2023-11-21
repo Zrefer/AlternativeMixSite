@@ -31,11 +31,15 @@ export const feedSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchFeed.fulfilled, (state, action) => {
+        const { articles, last_page, page } = action.payload;
+
         state.status = Status.Succeeded;
-        state.articles = action.payload.articles;
-        state.last_page = action.payload.last_page;
-        state.current_page = action.payload.page;
+        state.last_page = last_page;
+        state.current_page = page;
         state.error = null;
+
+        if (page <= 1) state.articles = articles;
+        else state.articles = [...state.articles, ...articles];
       })
       .addCase(fetchFeed.rejected, (state, action) => {
         state.status = Status.Failed;
