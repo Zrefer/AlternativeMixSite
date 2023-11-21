@@ -1,5 +1,5 @@
 .siteBlock {
-    background: rgba(255, 255, 255, .075);
+    background-color: rgba(255, 255, 255, .075);
     border-radius: 1em;
 }
 
@@ -17,6 +17,7 @@
     border: none;
     border-radius: .75em;
     box-shadow: 0 0 5px rgba(0, 0, 0, .35);
+    color: inherit;
     cursor: pointer;
     transition: background-color .2s ease-in;
 }

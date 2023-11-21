@@ -12,10 +12,7 @@ const App: FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("access-token");
-    if (accessToken) dispatch(fetchUser(accessToken));
-    else dispatch(userSlice.actions.tokenAbsent());
-
+    dispatch(fetchUser());
     dispatch(fetchFeed(1));
   }, [dispatch]);
 

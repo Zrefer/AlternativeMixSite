@@ -57,7 +57,7 @@ const Feed: FC = () => {
       {feed.current_page < feed.last_page && (
         <button
           type="button"
-          className={`${genStyles.siteBlock} ${styles.loadButton}`}
+          className={`${genStyles.button} ${genStyles.midText} ${styles.loadButton}`}
           ref={loadBtnRef}
           onClick={handleLoadMore}
           disabled={feed.status === Status.Loading}

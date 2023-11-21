@@ -7,6 +7,7 @@ export const store = configureStore({
     userStore: userSlice.reducer,
     feedStore: feedSlice.reducer,
   },
+  devTools: process.env.NODE_ENV === "development",
 });
 
 export type RootState = ReturnType<typeof store.getState>;

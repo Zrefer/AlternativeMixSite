@@ -17,6 +17,10 @@ body {
   margin: 0;
 }
 
+button {
+  padding: 0;
+}
+
 a {
   color: #DDD;
   cursor: pointer;
@@ -48,4 +52,9 @@ h1 {
 h2 {
   font-weight: 400;
   margin: 0;
+}
+
+:focus,
+:focus-visible {
+  outline: 2px solid lightskyblue;
 }

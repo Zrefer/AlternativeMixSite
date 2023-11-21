@@ -1,10 +1,15 @@
 import axios, { AxiosError, AxiosResponse, Method } from "axios";
-import { IUser, IUserResponse } from "../types/user";
+import {
+  ILoginForm,
+  ILoginResponse,
+  IUser,
+  IUserResponse,
+} from "../types/user";
 import { IArticle, IArticlesData, IArticlesResponse } from "../types/article";
 
 const baseUrl = "https://minecraft.mix-servers.com/backend";
 
-async function doRequest<T>(
+async function doRequest<T = any>(
   url: string,
   method: Method = "GET",
   token?: string,
@@ -40,6 +45,21 @@ async function doRequest<T>(
     );
   }
 }
+
+export const loginUser = async (form: ILoginForm): Promise<string> => {
+  const response = await doRequest<ILoginResponse>(
+    `${baseUrl}/api/login_check`,
+    "POST",
+    undefined,
+    form
+  );
+  if (response.token) return response.token;
+  throw new Error("Authentication error");
+};
+
+export const logoutUser = async (token: string) => {
+  await doRequest(`${baseUrl}/api/logout`, "POST", token, {});
+};
 
 export const fetchUserData = async (token: string): Promise<IUser> => {
   const response = await doRequest<IUserResponse>(
