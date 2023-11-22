@@ -1,10 +1,10 @@
 import { FC, MouseEventHandler, ReactNode, useRef } from "react";
-import ReactDOM from "react-dom";
-import styles from "./modal.module.css";
-import genStyles from "../../styles/generalStyles.module.css";
-import React from "react";
 
 import CloseIcon from "../../../public/images/close-icon.svg";
+import React from "react";
+import ReactDOM from "react-dom";
+import genStyles from "../../styles/generalStyles.module.css";
+import styles from "./modal.module.css";
 
 interface ModalProps {
   onClose?: () => void;
@@ -26,8 +26,7 @@ const Modal: FC<ModalProps> = ({ children, onClose }) => {
   }, [onClose]);
 
   const handleOverlayClose: MouseEventHandler<HTMLDivElement> = (event) => {
-    if (!onClose) return;
-    if (!event.target) return;
+    if (!onClose || event.button !== 0 || !event.target) return;
     if (event.target !== overlayRef.current) return;
     onClose();
   };

@@ -1,17 +1,17 @@
-import { FC, useEffect, useState } from "react";
-import styles from "./user-menu.module.css";
-
-import ProfileIcon from "../../../public/images/profile-icon.svg";
-import ShoppingIcon from "../../../public/images/shopping-icon.svg";
-import SavingsIcon from "../../../public/images/savings-icon.svg";
-import genStyles from "../../styles/generalStyles.module.css";
 import { AppDispatch, RootState } from "../../services/store";
+import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { exitUser } from "../../services/user/actions";
-import UserIcon from "../user-icon/user-icon";
+
+import { Link } from "react-router-dom";
+import ProfileIcon from "../../../public/images/profile-icon.svg";
+import SavingsIcon from "../../../public/images/savings-icon.svg";
+import ShoppingIcon from "../../../public/images/shopping-icon.svg";
 import { Status } from "../../types/actionStatus";
-import LoginMenu from "../login-menu/login-menu";
-import Modal from "../modal/modal";
+import UserIcon from "../user-icon/user-icon";
+import genStyles from "../../styles/generalStyles.module.css";
+import { logoutUser } from "../../services/user/actions";
+import styles from "./user-menu.module.css";
+import useModalNavigate from "../../hooks/useModalNavigate";
 
 const userSelector = (store: RootState) => {
   return store.userStore;
@@ -19,35 +19,35 @@ const userSelector = (store: RootState) => {
 
 const UserMenu: FC = () => {
   const dispatch: AppDispatch = useDispatch();
+  const { modalNavigate } = useModalNavigate();
 
   const [isDropDown, setIsDropDown] = useState(false);
-  const [isLoginMenu, setIsLoginMenu] = useState(false);
   const { user, authStatus } = useSelector(userSelector);
 
   const handleLogout = () => {
-    dispatch(exitUser());
+    dispatch(logoutUser());
   };
 
   const handleClick = () => {
     if (user) setIsDropDown(true);
-    else if (authStatus !== Status.Loading) setIsLoginMenu(true);
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    const target = event.target as HTMLElement;
-    if (!isDropDown || !target) return;
-    if (target.closest(`.${styles.userContainer}`)) return;
-    if (target.closest(`.${styles.dropDown}`)) return;
-
-    setIsDropDown(false);
+    else {
+      modalNavigate("/login");
+    }
   };
 
   useEffect(() => {
-    if (user && isLoginMenu) setIsLoginMenu(false);
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!isDropDown || !target) return;
+      if (target.closest(`.${styles.userContainer}`)) return;
+      if (target.closest(`.${styles.dropDown}`)) return;
+
+      setIsDropDown(false);
+    };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isDropDown, isLoginMenu, user]);
+  }, [isDropDown]);
 
   return (
     <>
@@ -92,22 +92,22 @@ const UserMenu: FC = () => {
             <nav>
               <ul className={styles.linksList}>
                 <li>
-                  <a href="#" className={styles.link}>
+                  <Link to="#" className={styles.link}>
                     <ProfileIcon
                       className={styles.icon}
                       style={{ fill: "yellow" }}
                     />
                     Личный кабинет
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className={styles.link}>
+                  <Link to="#" className={styles.link}>
                     <ShoppingIcon
                       className={styles.icon}
                       style={{ fill: "lightskyblue" }}
                     />
                     Магазин блоков
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -121,11 +121,6 @@ const UserMenu: FC = () => {
           </div>
         )}
       </div>
-      {!user && isLoginMenu && (
-        <Modal onClose={() => setIsLoginMenu(false)}>
-          <LoginMenu />
-        </Modal>
-      )}
     </>
   );
 };

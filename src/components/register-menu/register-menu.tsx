@@ -3,25 +3,26 @@ import * as Yup from "yup";
 import { AppDispatch, RootState } from "../../services/store";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import {
+  emailValidator,
   passwordValidator,
   usernameValidator,
 } from "../../utils/formValidation";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FC } from "react";
-import { ILoginForm } from "../../types/forms";
+import { IRegisterForm } from "../../types/forms";
 import Modal from "../modal/modal";
 import { Status } from "../../types/actionStatus";
 import genStyles from "../../styles/generalStyles.module.css";
-import { loginUser } from "../../services/user/actions";
-import styles from "./login-menu.module.css";
+import { registerUser } from "../../services/user/actions";
+import styles from "./register-menu.module.css";
 import useModalNavigate from "../../hooks/useModalNavigate";
 
 const userStoreSelector = (store: RootState) => {
   return store.userStore;
 };
 
-const LoginMenu: FC = () => {
+const RegisterMenu: FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { modalBackOrNavigate, modalNavigate } = useModalNavigate();
 
@@ -31,16 +32,23 @@ const LoginMenu: FC = () => {
     return <></>;
   }
 
-  const handleSubmit = (values: ILoginForm) => {
+  const handleSubmit = (values: IRegisterForm) => {
     if (authStatus === Status.Loading) return;
-    dispatch(loginUser(values));
+    dispatch(registerUser(values));
   };
 
   const validationSchema = Yup.object({
-    username: usernameValidator,
+    nick: usernameValidator,
     password: passwordValidator,
+    password2: Yup.string().oneOf([Yup.ref("password")], "Пароли не совпадают"),
+    email: emailValidator,
   });
-  const initialForm: ILoginForm = { username: "", password: "" };
+  const initialForm: IRegisterForm = {
+    nick: "",
+    password: "",
+    password2: "",
+    email: "",
+  };
 
   return (
     <Modal onClose={() => modalBackOrNavigate("/")}>
@@ -51,18 +59,35 @@ const LoginMenu: FC = () => {
       >
         {(formik) => (
           <>
-            <h2 className={`${genStyles.title} ${styles.title}`}>Вход</h2>
+            <h2 className={`${genStyles.title} ${styles.title}`}>
+              Регистрация
+            </h2>
             <Form className={styles.form}>
               <div>
                 <Field
-                  id="username"
-                  name="username"
-                  placeholder="Ваш никнейм"
+                  id="nick"
+                  name="nick"
+                  placeholder="Придумайте никнейм"
                   autoComplete="username"
                   className={`${genStyles.midText} ${styles.field}`}
                 />
                 <ErrorMessage
-                  name="username"
+                  name="nick"
+                  component="p"
+                  className={styles.errorMsg}
+                />
+              </div>
+              <div>
+                <Field
+                  id="email"
+                  name="email"
+                  placeholder="Ваша электронная почта"
+                  autoComplete="email"
+                  type="email"
+                  className={`${genStyles.midText} ${styles.field}`}
+                />
+                <ErrorMessage
+                  name="email"
                   component="p"
                   className={styles.errorMsg}
                 />
@@ -71,9 +96,9 @@ const LoginMenu: FC = () => {
                 <Field
                   id="password"
                   name="password"
-                  placeholder="Ваш пароль"
+                  placeholder="Придумайте пароль"
                   type="password"
-                  autoComplete="current-password"
+                  autoComplete="new-password"
                   className={`${genStyles.midText} ${styles.field}`}
                 />
                 <ErrorMessage
@@ -82,20 +107,27 @@ const LoginMenu: FC = () => {
                   className={styles.errorMsg}
                 />
               </div>
-              <div className={styles.links}>
-                <span
-                  className={styles.link}
-                  onClick={() => modalNavigate("/register")}
-                >
-                  Регистрация
-                </span>
-                <span
-                  className={styles.link}
-                  onClick={() => modalNavigate("/forgot-password")}
-                >
-                  Забыли пароль?
-                </span>
+              <div>
+                <Field
+                  id="password2"
+                  name="password2"
+                  placeholder="Повторите пароль"
+                  type="password"
+                  autoComplete="new-password"
+                  className={`${genStyles.midText} ${styles.field}`}
+                />
+                <ErrorMessage
+                  name="password2"
+                  component="p"
+                  className={styles.errorMsg}
+                />
               </div>
+              <span
+                className={styles.registeredLink}
+                onClick={() => modalNavigate("/login")}
+              >
+                Уже зарегистрированы?
+              </span>
               <button
                 type="submit"
                 className={`${genStyles.button} ${genStyles.midText} ${styles.button}`}
@@ -105,7 +137,9 @@ const LoginMenu: FC = () => {
                   authStatus === Status.Loading
                 }
               >
-                {authStatus === Status.Loading ? "Вход..." : "Войти"}
+                {authStatus === Status.Loading
+                  ? "Регистрация..."
+                  : "Зарегистрироваться"}
               </button>
             </Form>
           </>
@@ -114,5 +148,4 @@ const LoginMenu: FC = () => {
     </Modal>
   );
 };
-
-export default LoginMenu;
+export default RegisterMenu;

@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { authUser, fetchUser } from "./actions";
+import { fetchUser, loginUser, registerUser } from "./actions";
+
 import { IUser } from "../../types/user";
 import { Status } from "../../types/actionStatus";
+import { createSlice } from "@reduxjs/toolkit";
 
 interface UserState {
   user: IUser | null;
@@ -42,12 +43,22 @@ export const userSlice = createSlice({
         state.user = null;
         state.error = action.error.message ?? "Unknown error";
       })
-      .addCase(authUser.pending, (state) => {
+      .addCase(loginUser.pending, (state) => {
         state.authStatus = Status.Loading;
         state.error = null;
         state.user = null;
       })
-      .addCase(authUser.rejected, (state, action) => {
+      .addCase(loginUser.rejected, (state, action) => {
+        state.authStatus = Status.Failed;
+        state.user = null;
+        state.error = action.error.message ?? "Unknown error";
+      })
+      .addCase(registerUser.pending, (state) => {
+        state.authStatus = Status.Loading;
+        state.error = null;
+        state.user = null;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
         state.authStatus = Status.Failed;
         state.user = null;
         state.error = action.error.message ?? "Unknown error";

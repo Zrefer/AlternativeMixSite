@@ -1,11 +1,7 @@
+import { IArticlesData, IArticlesResponse } from "../types/article";
+import { ILoginForm, IRegisterForm } from "../types/forms";
+import { ILoginResponse, IUser, IUserResponse } from "../types/user";
 import axios, { AxiosError, AxiosResponse, Method } from "axios";
-import {
-  ILoginForm,
-  ILoginResponse,
-  IUser,
-  IUserResponse,
-} from "../types/user";
-import { IArticle, IArticlesData, IArticlesResponse } from "../types/article";
 
 const baseUrl = "https://minecraft.mix-servers.com/backend";
 
@@ -46,7 +42,7 @@ async function doRequest<T = any>(
   }
 }
 
-export const loginUser = async (form: ILoginForm): Promise<string> => {
+export const loginUserRequest = async (form: ILoginForm): Promise<string> => {
   const response = await doRequest<ILoginResponse>(
     `${baseUrl}/api/login_check`,
     "POST",
@@ -57,11 +53,15 @@ export const loginUser = async (form: ILoginForm): Promise<string> => {
   throw new Error("Authentication error");
 };
 
-export const logoutUser = async (token: string) => {
+export const logoutUserRequest = async (token: string) => {
   await doRequest(`${baseUrl}/api/logout`, "POST", token, {});
 };
 
-export const fetchUserData = async (token: string): Promise<IUser> => {
+export const registerUserRequest = async (form: IRegisterForm) => {
+  await doRequest(`${baseUrl}/api/register`, "POST", undefined, form);
+};
+
+export const fetchUserRequest = async (token: string): Promise<IUser> => {
   const response = await doRequest<IUserResponse>(
     `${baseUrl}/api/user`,
     "GET",
@@ -71,7 +71,9 @@ export const fetchUserData = async (token: string): Promise<IUser> => {
   throw new Error("Authentication error");
 };
 
-export const fetchFeedData = async (page: number): Promise<IArticlesData> => {
+export const fetchFeedRequest = async (
+  page: number
+): Promise<IArticlesData> => {
   const response = await doRequest<IArticlesResponse>(
     `${baseUrl}/articles?page=${page}&postsPerPage=6`
   );

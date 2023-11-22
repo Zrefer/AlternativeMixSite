@@ -1,15 +1,44 @@
+import { ILoginForm, IRegisterForm } from "../../types/forms";
+import {
+  fetchUserRequest,
+  loginUserRequest,
+  logoutUserRequest,
+  registerUserRequest,
+} from "../../utils/api";
+
+import { IUser } from "../../types/user";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ILoginForm, IUser } from "../../types/user";
-import { fetchUserData, loginUser, logoutUser } from "../../utils/api";
 import userSlice from "./slices";
 
-export const authUser = createAsyncThunk<
+export const registerUser = createAsyncThunk<
+  void,
+  IRegisterForm,
+  { rejectValue: string }
+>(
+  "user/registerUser",
+  async (form: IRegisterForm, { rejectWithValue, dispatch }) => {
+    try {
+      await registerUserRequest(form);
+
+      const loginForm: ILoginForm = {
+        username: form.nick,
+        password: form.password,
+      };
+      await dispatch(loginUser(loginForm));
+    } catch (error) {
+      if (error instanceof Error) rejectWithValue(error.message);
+      rejectWithValue("An unknown error occurred");
+    }
+  }
+);
+
+export const loginUser = createAsyncThunk<
   void,
   ILoginForm,
   { rejectValue: string }
->("user/authUser", async (form: ILoginForm, { rejectWithValue, dispatch }) => {
+>("user/loginUser", async (form: ILoginForm, { rejectWithValue, dispatch }) => {
   try {
-    const accessToken = await loginUser(form);
+    const accessToken = await loginUserRequest(form);
     localStorage.setItem("access-token", accessToken);
     await dispatch(fetchUser());
   } catch (error) {
@@ -18,14 +47,14 @@ export const authUser = createAsyncThunk<
   }
 });
 
-export const exitUser = createAsyncThunk<void, void>(
-  "user/exitUser",
+export const logoutUser = createAsyncThunk<void, void>(
+  "user/logoutUser",
   async (_, { dispatch }) => {
     dispatch(userSlice.actions.logout());
 
     const accessToken = localStorage.getItem("access-token");
     localStorage.removeItem("access-token");
-    if (accessToken) await logoutUser(accessToken);
+    if (accessToken) await logoutUserRequest(accessToken);
   }
 );
 
@@ -36,7 +65,7 @@ export const fetchUser = createAsyncThunk<IUser, void, { rejectValue: string }>(
     if (!accessToken) return rejectWithValue("Token was null");
 
     try {
-      return await fetchUserData(accessToken);
+      return await fetchUserRequest(accessToken);
     } catch (error) {
       if (error instanceof Error) return rejectWithValue(error.message);
       return rejectWithValue("An unknown error occurred");

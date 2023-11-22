@@ -16,7 +16,7 @@ const Monitoring: FC = () => {
       },
       { maxOnline: 0, totalOnline: 0 }
     );
-  }, [monitoring.data]);
+  }, []);
 
   return (
     <div className={`${genStyles.siteBlock} ${styles.container}`}>

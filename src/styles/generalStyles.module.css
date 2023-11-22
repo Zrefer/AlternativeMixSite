@@ -22,8 +22,17 @@
     transition: background-color .2s ease-in;
 }
 
-.button:hover {
+.button:disabled {
+    color: #999;
+    cursor: default;
+}
+
+.button:not(:disabled):hover {
     background: rgba(255, 255, 255, .25);
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, .1);
 }
 
 .smallText {

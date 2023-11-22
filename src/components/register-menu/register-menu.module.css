@@ -32,18 +32,12 @@
     width: 80%;
 }
 
-.links {
-    align-self: center;
-    display: flex;
-    justify-content: space-between;
-    width: 95%;
-}
-
-.link {
+.registeredLink {
     cursor: pointer;
+    text-align: center;
     transition: opacity .2s ease-in;
 }
 
-.link:hover {
+.registeredLink:hover {
     opacity: .8;
 }

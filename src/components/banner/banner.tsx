@@ -4,6 +4,7 @@ import styles from "./banner.module.css";
 const Banner: FC = () => {
   return (
     <img
+      alt="Баннер"
       className={styles.image}
       src="https://minecraft.mix-servers.com/assets/main/img/banner-min.png"
     />

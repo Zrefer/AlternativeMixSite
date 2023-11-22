@@ -30,10 +30,11 @@ const Feed: FC = () => {
       { threshold: 0.5 }
     );
 
-    if (loadBtnRef.current) observer.observe(loadBtnRef.current);
+    const loadBtnElement = loadBtnRef.current;
+    if (loadBtnElement) observer.observe(loadBtnRef.current);
 
     return () => {
-      if (loadBtnRef.current) observer.unobserve(loadBtnRef.current);
+      if (loadBtnElement) observer.unobserve(loadBtnElement);
     };
   }, [dispatch, feed.current_page, feed.last_page, feed.status]);
 

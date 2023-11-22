@@ -11,11 +11,6 @@ export interface IUserResponse {
   data?: IUser;
 }
 
-export interface ILoginForm {
-  username: string;
-  password: string;
-}
-
 export interface ILoginResponse {
   token: string;
 }
