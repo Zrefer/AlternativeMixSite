@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { IArticle } from "../../types/article";
 import styles from "./article.module.css";
+import genStyles from "../../styles/generalStyles.module.css";
 
 const Article: FC<{ article: IArticle }> = ({ article }) => {
   return (
-    <article className={styles.article}>
-      <h2 className={styles.title}>{article.title}</h2>
+    <article className={`${genStyles.siteBlock} ${styles.article}`}>
+      <h2 className={`${genStyles.title} ${styles.title}`}>{article.title}</h2>
       <div className={styles.articleContent}>
         <div className={styles.imageBox}>
           <img
@@ -21,7 +22,7 @@ const Article: FC<{ article: IArticle }> = ({ article }) => {
           <button
             type="button"
             name="likeBtn"
-            className={`${styles.button} ${
+            className={`${genStyles.button} ${styles.button} ${
               article.myLike ? styles.likeBtnActive : styles.likeBtn
             }`}
           >
@@ -30,12 +31,12 @@ const Article: FC<{ article: IArticle }> = ({ article }) => {
           <button
             type="button"
             name="commentBtn"
-            className={`${styles.button} ${styles.commentBtn}`}
+            className={`${genStyles.button} ${styles.button} ${styles.commentBtn}`}
           >
             {article.comment_num}
           </button>
         </div>
-        <span className={styles.pubDate}>{article.date}</span>
+        <span className={genStyles.smallText}>{article.date}</span>
       </div>
     </article>
   );

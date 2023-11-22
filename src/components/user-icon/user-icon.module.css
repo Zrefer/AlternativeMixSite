@@ -1,0 +1,7 @@
+.canvas {
+    background-image: url(../../../public/images/steveHead.png);
+    background-size: cover;
+    border-radius: 5px;
+    height: 32px;
+    width: 32px;
+}

@@ -1,6 +1,7 @@
 import { FC, useMemo } from "react";
 import { monitoring } from "../../data";
 import styles from "./monitoring.module.css";
+import genStyles from "../../styles/generalStyles.module.css";
 import ProgressBar from "../progress-bar/progress-bar";
 
 const Monitoring: FC = () => {
@@ -15,11 +16,11 @@ const Monitoring: FC = () => {
       },
       { maxOnline: 0, totalOnline: 0 }
     );
-  }, [monitoring.data]);
+  }, []);
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Мониторинг</h2>
+    <div className={`${genStyles.siteBlock} ${styles.container}`}>
+      <h2 className={`${genStyles.title} ${styles.title}`}>Мониторинг</h2>
       <div className={styles.bars}>
         {monitoring.data &&
           monitoring.data.servers.map((server) => (

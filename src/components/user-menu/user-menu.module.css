@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    height: 100%;
+    min-width: 300px;
+    position: relative;
+}
+
+.userContainer {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 16px;
+    height: 100%;
+    margin-left: auto;
+    padding: 0 16px;
+    transition: background-color .1s ease-in;
+}
+
+.userContainer:hover {
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.userName {
+    font-weight: 500;
+}
+
+.dropDown {
+    background: var(--solid-background-accent);
+    border-bottom-left-radius: .7em;
+    border-bottom-right-radius: .7em;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .5), 0 5px 5px rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform .2s ease-in-out;
+    width: 80%;
+}
+
+.dropDownOpened {
+    transform: scaleY(1);
+}
+
+.userHello {
+    margin: 16px 0 16px;
+    text-align: center;
+}
+
+.userHelloName {
+    font-weight: 600;
+}
+
+.linksList {
+    align-items: center;
+    border-bottom: 2px solid rgba(255, 255, 255, .2);
+    border-top: 2px solid rgba(255, 255, 255, .2);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 0;
+}
+
+.link {
+    align-items: center;
+    display: flex;
+}
+
+.icon {
+    height: 20px;
+    margin-right: 4px;
+    vertical-align: middle;
+    width: 20px;
+}
+
+.balance {
+    margin: 16px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.logoutBtn {
+    height: 25px;
+    margin: 16px auto;
+    width: 100px;
+}

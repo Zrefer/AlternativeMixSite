@@ -11,8 +11,16 @@
     "build": "webpack --mode=production"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
+    "axios": "^1.6.2",
+    "formik": "^2.4.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.3",
+    "react-router": "^6.19.0",
+    "react-router-dom": "^6.19.0",
+    "redux": "^4.2.1",
+    "yup": "^1.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
@@ -23,6 +31,8 @@
     "@types/css-modules": "^1.0.5",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/yup": "^0.32.0",
     "babel-loader": "^9.1.3",
     "babel-plugin-named-asset-import": "^0.3.8",
     "browserslist": "^4.22.1",

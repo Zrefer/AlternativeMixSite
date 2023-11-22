@@ -1,8 +1,5 @@
 .container {
     align-items: center;
-    background: rgba(255, 255, 255, .075);
-    border-radius: 1em;
-    color: #DDD;
     display: flex;
     flex-direction: column;
     padding: 16px 20px 0;
@@ -19,15 +16,6 @@
     width: 30px;
 }
 
-.title {
-    color: #EEE;
-    font-size: 27px;
-    font-weight: 400;
-    margin: 0;
-    margin-bottom: 16px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
-}
-
 .bars {
     display: flex;
     flex-direction: column;
@@ -36,9 +24,6 @@
 }
 
 .totalInfo {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.2;
     text-align: center;
 }
 

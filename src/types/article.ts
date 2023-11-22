@@ -11,11 +11,13 @@ export interface IArticle {
   myLike: boolean;
 }
 
+export interface IArticlesData {
+  articles: IArticle[];
+  last_page: number;
+}
+
 export interface IArticlesResponse {
   status: number;
   msg: string;
-  data?: {
-    articles: IArticle[];
-    last_page: number;
-  }[];
+  data?: IArticlesData[];
 }

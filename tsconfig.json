@@ -15,6 +15,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*",
+    "declarations/images.d.ts"
+  ]
 }
   

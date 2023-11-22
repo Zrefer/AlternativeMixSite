@@ -1,7 +1,4 @@
 .article {
-    background: rgba(255, 255, 255, .075);
-    border-radius: 1em;
-    color: #DDD;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -18,18 +15,8 @@
     width: 36px;
 }
 
-.title {
-    align-self: center;
-    color: #EEE;
-    font-size: 27px;
-    font-weight: 400;
-    margin: 0;
-    margin-bottom: 16px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
-}
-
 .imageBox {
-    border-radius: 15px;
+    border-radius: 1em;
     float: left;
     height: 200px;
     margin: 0 16px 16px 0;
@@ -47,10 +34,7 @@
 
 .text {
     display: inline;
-    font-size: 16px;
     line-height: 27px;
-    margin: 0;
-    vertical-align: top;
     white-space: pre-line;
 }
 
@@ -69,20 +53,9 @@
 }
 
 .button {
-    background: rgba(255, 255, 255, .1);
-    border: none;
-    border-radius: 1em;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .35);
     color: inherit;
-    cursor: pointer;
     height: 25px;
-    line-height: 1;
-    transition: background-color .2s ease-in;
     width: 50px;
-}
-
-.button:hover {
-    background: rgba(255, 255, 255, .25);
 }
 
 .button::before {
@@ -107,8 +80,4 @@
 
 .likeBtnActive::before {
     background-image: url(../../../public/images/liked-icon.png);
-}
-
-.pubDate {
-    font-size: 14px;
 }
