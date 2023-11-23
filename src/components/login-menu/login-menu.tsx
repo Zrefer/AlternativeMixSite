@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { FC } from "react";
 import { ILoginForm } from "../../types/forms";
+import { Link } from "react-router-dom";
 import Modal from "../modal/modal";
 import { Status } from "../../types/actionStatus";
 import genStyles from "../../styles/generalStyles.module.css";
@@ -17,19 +18,15 @@ import { loginUser } from "../../services/user/actions";
 import styles from "./login-menu.module.css";
 import useModalNavigate from "../../hooks/useModalNavigate";
 
-const userStoreSelector = (store: RootState) => {
-  return store.userStore;
+const authStatusSelector = (store: RootState) => {
+  return store.userStore.authStatus;
 };
 
 const LoginMenu: FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { modalBackOrNavigate, modalNavigate } = useModalNavigate();
 
-  const { user, authStatus } = useSelector(userStoreSelector);
-  if (user) {
-    modalBackOrNavigate("/");
-    return <></>;
-  }
+  const authStatus = useSelector(authStatusSelector);
 
   const handleSubmit = (values: ILoginForm) => {
     if (authStatus === Status.Loading) return;
@@ -89,12 +86,12 @@ const LoginMenu: FC = () => {
                 >
                   Регистрация
                 </span>
-                <span
+                <Link
+                  to="https://minecraft.mix-servers.com/reset-password"
                   className={styles.link}
-                  onClick={() => modalNavigate("/forgot-password")}
                 >
                   Забыли пароль?
-                </span>
+                </Link>
               </div>
               <button
                 type="submit"

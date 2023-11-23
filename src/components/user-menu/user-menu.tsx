@@ -92,7 +92,7 @@ const UserMenu: FC = () => {
             <nav>
               <ul className={styles.linksList}>
                 <li>
-                  <Link to="#" className={styles.link}>
+                  <Link to="/account" className={styles.link}>
                     <ProfileIcon
                       className={styles.icon}
                       style={{ fill: "yellow" }}

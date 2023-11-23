@@ -1,7 +1,7 @@
 import { FC } from "react";
-import styles from "./header.module.css";
-import UserMenu from "../user-menu/user-menu";
 import { Link } from "react-router-dom";
+import UserMenu from "../user-menu/user-menu";
+import styles from "./header.module.css";
 
 const Header: FC = () => {
   return (
@@ -16,10 +16,14 @@ const Header: FC = () => {
               <Link to="http://f.mix-servers.com/">Форум</Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="#">Правила</Link>
+              <Link to="https://minecraft.mix-servers.com/page/rules">
+                Правила
+              </Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="#">Начать играть</Link>
+              <Link to="https://minecraft.mix-servers.com/page/start">
+                Начать играть
+              </Link>
             </li>
           </ul>
         </nav>

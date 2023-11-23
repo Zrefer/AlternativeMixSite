@@ -18,19 +18,15 @@ import { registerUser } from "../../services/user/actions";
 import styles from "./register-menu.module.css";
 import useModalNavigate from "../../hooks/useModalNavigate";
 
-const userStoreSelector = (store: RootState) => {
-  return store.userStore;
+const authStatusSelector = (store: RootState) => {
+  return store.userStore.authStatus;
 };
 
 const RegisterMenu: FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { modalBackOrNavigate, modalNavigate } = useModalNavigate();
 
-  const { user, authStatus } = useSelector(userStoreSelector);
-  if (user) {
-    modalBackOrNavigate("/");
-    return <></>;
-  }
+  const authStatus = useSelector(authStatusSelector);
 
   const handleSubmit = (values: IRegisterForm) => {
     if (authStatus === Status.Loading) return;

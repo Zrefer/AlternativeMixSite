@@ -21,7 +21,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      state.authStatus = Status.Idle;
+      state.authStatus = Status.Succeeded;
       state.error = null;
       state.user = null;
     },

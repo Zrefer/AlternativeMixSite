@@ -81,3 +81,10 @@
     font-weight: 100;
     src: url('Roboto-ThinItalic.ttf') format('truetype');
 }
+
+@font-face {
+    font-family: 'Minecraft';
+    font-style: normal;
+    font-weight: 400;
+    src: url('Minecraft.woff2') format('woff2');
+}
