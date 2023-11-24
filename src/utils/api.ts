@@ -1,8 +1,16 @@
+import {
+  IAddFundsForm,
+  IBuyGroupForm,
+  ILoginForm,
+  IRegisterForm,
+} from "../types/forms";
 import { IArticlesData, IArticlesResponse } from "../types/article";
 import { ICabinetData, ICabinetResponse } from "../types/cabinet";
-import { ILoginForm, IRegisterForm } from "../types/forms";
 import { ILoginResponse, IUser, IUserResponse } from "../types/user";
 import axios, { AxiosError, AxiosResponse, Method } from "axios";
+
+import { IBuyGroupResponse } from "../types/buyStatus";
+import { IPaymentResponse } from "../types/payment";
 
 const baseUrl = "https://minecraft.mix-servers.com/backend";
 
@@ -94,5 +102,60 @@ export const fetchCabinetRequest = async (
     token
   );
   if (response.data) return response.data;
-  throw new Error("Authentication error");
+  throw new Error("No cabinet data received");
+};
+
+export const getPaymentData = async (form: IAddFundsForm) => {
+  if (form.paymentMethod === "none")
+    throw new Error("Select the payment method");
+
+  const accessToken = localStorage.getItem("access-token");
+  if (!accessToken) throw new Error("Token was null");
+
+  let route;
+  switch (form.paymentMethod) {
+    case "qiwi":
+      route = "payment-qiwi";
+      break;
+    case "card":
+      route = "payment/paypalych";
+      break;
+    case "foreignCard":
+    case "sbp":
+      route = "payment-tome";
+      break;
+    case "payeer":
+      route = "payment/payeer";
+      break;
+  }
+
+  try {
+    const response = await doRequest<IPaymentResponse>(
+      `${baseUrl}/api/${route}?sum=${form.sum}`,
+      "POST",
+      accessToken
+    );
+    if (response.data) return response.data;
+  } catch {
+    throw new Error("Unknown error");
+  }
+  throw new Error("No payment url received");
+};
+
+export const buyGroup = async (form: IBuyGroupForm) => {
+  const accessToken = localStorage.getItem("access-token");
+  if (!accessToken) throw new Error("Token was null");
+
+  try {
+    const response = await doRequest<IBuyGroupResponse>(
+      `${baseUrl}/api/cabinet-buy-group`,
+      "POST",
+      accessToken,
+      form
+    );
+    if (response.data) return response.data;
+  } catch {
+    throw new Error("Unknown error");
+  }
+  throw new Error("No buyGroup data received");
 };

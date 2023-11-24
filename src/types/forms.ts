@@ -9,3 +9,15 @@ export interface IRegisterForm {
   password2: string;
   email: string;
 }
+
+export interface IAddFundsForm {
+  sum: number;
+  paymentMethod: "none" | "qiwi" | "card" | "foreignCard" | "sbp" | "payeer";
+}
+
+export interface IBuyGroupForm {
+  changeGroup: boolean;
+  groupName: string;
+  monthsNum: number;
+  serverId: string;
+}

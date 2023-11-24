@@ -2,7 +2,9 @@ import { FC, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import AccountPage from "../../pages/account-page/account-page";
+import AddFundsPage from "../../pages/account-page/addFunds-page/addFunds-page";
 import { AppDispatch } from "../../services/store";
+import BuyStatusPage from "../../pages/account-page/buyStatus-page/buyStatus-page";
 import CabinetPage from "../../pages/account-page/cabinet-page/cabinet-page";
 import Content from "../content/content";
 import LoginMenu from "../login-menu/login-menu";
@@ -33,21 +35,23 @@ const App: FC = () => {
             {!modalBackground && (
               <>
                 <Route
-                  path="/login"
+                  path="login"
                   element={<ProtectedRoute not children={<LoginMenu />} />}
                 />
                 <Route
-                  path="/register"
+                  path="register"
                   element={<ProtectedRoute not children={<RegisterMenu />} />}
                 />
               </>
             )}
           </Route>
           <Route
-            path="/account"
+            path="account"
             element={<ProtectedRoute children={<AccountPage />} />}
           >
             <Route index element={<CabinetPage />} />
+            <Route path="addFunds" element={<AddFundsPage />} />
+            <Route path="buyStatus" element={<BuyStatusPage />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound404Page />} />
@@ -55,11 +59,11 @@ const App: FC = () => {
       {modalBackground && (
         <Routes>
           <Route
-            path="/login"
+            path="login"
             element={<ProtectedRoute not children={<LoginMenu />} />}
           />
           <Route
-            path="/register"
+            path="register"
             element={<ProtectedRoute not children={<RegisterMenu />} />}
           />
         </Routes>

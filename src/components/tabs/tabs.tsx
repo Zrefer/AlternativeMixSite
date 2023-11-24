@@ -6,15 +6,17 @@ import styles from "./tabs.module.css";
 
 interface TabsProps {
   tabs: NonEmptyArray<string>;
-  defaultTab?: string;
+  activeTab?: string;
   onTabChange: (tab: string) => void;
 }
 
-const Tabs: FC<TabsProps> = ({ tabs, defaultTab, onTabChange }) => {
+const Tabs: FC<TabsProps> = ({ tabs, activeTab: defaultTab, onTabChange }) => {
   const [activeTab, setActiveTab] = useState(defaultTab || tabs[0]);
 
   const handleTabClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     const tabName = event.currentTarget.name;
+    if (activeTab === tabName) return;
+
     setActiveTab(tabName);
     onTabChange(tabName);
   };

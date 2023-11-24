@@ -25,19 +25,21 @@ const CabinetPage: FC = () => {
         Ниже отображены Ваши статусы на наших серверах с указанием срока
         окончания того или иного статуса.
       </span>
-      <div className={styles.statusGrid}>
-        <p className={styles.gridItem}>Название сервера</p>
-        <p className={styles.gridItem}>Имеющийся статус</p>
-        <p className={styles.gridItem}>Истекает</p>
+      <ul className={styles.statusList}>
+        <li className={styles.statusLine}>
+          <p className={styles.lineItem}>Название сервера</p>
+          <p className={styles.lineItem}>Имеющийся статус</p>
+          <p className={styles.lineItem}>Истекает</p>
+        </li>
         {groups &&
           groups.map((group) => (
-            <>
-              <p className={styles.gridItem}>{group.server}</p>
-              <p className={styles.gridItem}>{group.group}</p>
-              <p className={styles.gridItem}>{group.endTime}</p>
-            </>
+            <li key={group.server} className={styles.statusLine}>
+              <p className={styles.lineItem}>{group.server}</p>
+              <p className={styles.lineItem}>{group.group}</p>
+              <p className={styles.lineItem}>{group.endTime}</p>
+            </li>
           ))}
-      </div>
+      </ul>
     </>
   );
 };

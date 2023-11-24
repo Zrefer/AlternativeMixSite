@@ -91,7 +91,7 @@ const SkinView: FC<SkinViewerProps> = ({
   const width = view.width || viewProps.width!;
   const height = view.height || viewProps.height!;
 
-  // Load images in useEffect
+  // Load skin image in useEffect
   useEffect(() => {
     if (typeof skin.skin === "string") {
       loadImage(skin.skin)
@@ -99,6 +99,13 @@ const SkinView: FC<SkinViewerProps> = ({
         .catch((error) => console.log(error));
     } else setSkinImage(skin.skin);
 
+    return () => {
+      setSkinImage(undefined);
+    };
+  }, [skin.skin]);
+
+  // Load cape image in useEffect
+  useEffect(() => {
     if (skin.cape) {
       if (typeof skin.cape === "string") {
         loadImage(skin.cape)
@@ -108,10 +115,9 @@ const SkinView: FC<SkinViewerProps> = ({
     }
 
     return () => {
-      setSkinImage(undefined);
       setCapeImage(undefined);
     };
-  }, [skin.skin, skin.cape]);
+  }, [skin.cape]);
 
   // Init SkinViewer in useLayoutEffect
   useLayoutEffect(() => {

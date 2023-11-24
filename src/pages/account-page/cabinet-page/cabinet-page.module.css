@@ -7,14 +7,17 @@
     width: 100%;
 }
 
-.statusGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+.statusList {
     margin-top: 16px;
     text-align: center;
 }
 
-.gridItem {
+.statusLine {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.lineItem {
     border-bottom: 1px solid #555;
     font-size: 18px;
     line-height: 2.2;

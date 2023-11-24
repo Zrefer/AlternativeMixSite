@@ -15,6 +15,7 @@ module.exports = (env, argv) => {
   return {
     entry: path.resolve(__dirname, "./src/index.tsx"),
     output: {
+      publicPath: "/",
       path: path.resolve(__dirname, "./build"),
       filename: "bundle.js",
     },
