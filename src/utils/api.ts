@@ -1,4 +1,5 @@
 import { IArticlesData, IArticlesResponse } from "../types/article";
+import { ICabinetData, ICabinetResponse } from "../types/cabinet";
 import { ILoginForm, IRegisterForm } from "../types/forms";
 import { ILoginResponse, IUser, IUserResponse } from "../types/user";
 import axios, { AxiosError, AxiosResponse, Method } from "axios";
@@ -82,4 +83,16 @@ export const fetchFeedRequest = async (
     return { last_page: data.last_page, articles: data.articles };
   }
   throw new Error("News fetch error");
+};
+
+export const fetchCabinetRequest = async (
+  token: string
+): Promise<ICabinetData> => {
+  const response = await doRequest<ICabinetResponse>(
+    `${baseUrl}/api/cabinet-data`,
+    "POST",
+    token
+  );
+  if (response.data) return response.data;
+  throw new Error("Authentication error");
 };

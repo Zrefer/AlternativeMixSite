@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
 
+import { Outlet } from "react-router";
 import { RootState } from "../../services/store";
 import SkinView from "../../components/skin-view/skin-view";
 import SteveSkin from "../../../public/images/steve-skin.png";
@@ -42,7 +43,7 @@ const AccountPage: FC = () => {
   }, [user]);
 
   return (
-    <section className={`${genStyles.siteBlock} ${styles.container}`}>
+    <section className={`${genStyles.siteBlock} ${styles.section}`}>
       <h1 className={`${genStyles.mainTitle} ${styles.title}`}>
         Личный кабинет
       </h1>
@@ -51,7 +52,7 @@ const AccountPage: FC = () => {
         onTabChange={(tab) => {}}
       />
       <div className={styles.content}>
-        <div className={styles.skin}>
+        <div>
           <SkinView
             skin={{
               skin: skinImage || SteveSkin,
@@ -68,16 +69,8 @@ const AccountPage: FC = () => {
             }}
           />
         </div>
-        <div className={styles.info}>
-          <i className={`${genStyles.midText} ${styles.mark}`}>
-            Ниже отображены Ваши статусы на наших серверах с указанием срока
-            окончания того или иного статуса.
-          </i>
-          <div className={styles.statusGrid}>
-            <p className={styles.serverName}>Название сервера</p>
-            <p className={styles.status}>Имеющийся статус</p>
-            <p className={styles.expires}>Истекает</p>
-          </div>
+        <div className={styles.pageContainer}>
+          <Outlet />
         </div>
       </div>
     </section>

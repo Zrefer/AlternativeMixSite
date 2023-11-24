@@ -138,6 +138,7 @@ const SkinView: FC<SkinViewerProps> = ({
 
     const rotationXDeg = (view.rotate || viewProps.rotate!) * (Math.PI / 180);
     viewer.playerWrapper.rotation.y = rotationXDeg;
+    viewer.playerWrapper.position.y = -2;
 
     const background = view.background || viewProps.background!;
     if (background === "transparent")

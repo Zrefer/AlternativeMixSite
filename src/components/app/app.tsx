@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import AccountPage from "../../pages/account-page/account-page";
 import { AppDispatch } from "../../services/store";
+import CabinetPage from "../../pages/account-page/cabinet-page/cabinet-page";
 import Content from "../content/content";
 import LoginMenu from "../login-menu/login-menu";
 import MainPage from "../../pages/main-page/main-page";
@@ -45,7 +46,9 @@ const App: FC = () => {
           <Route
             path="/account"
             element={<ProtectedRoute children={<AccountPage />} />}
-          />
+          >
+            <Route index element={<CabinetPage />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound404Page />} />
       </Routes>
