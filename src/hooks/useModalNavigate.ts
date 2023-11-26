@@ -19,6 +19,12 @@ const useModalNavigate = () => {
   const modalBackOrNavigate = (to: To) => {
     navigate(modalBackground ?? "/", { replace: true });
   };
-  return { modalNavigate, modalBackOrNavigate, modalBackground };
+  return {
+    modalNavigate,
+    modalBackOrNavigate,
+    modalBackground,
+    navigate,
+    location,
+  };
 };
 export default useModalNavigate;

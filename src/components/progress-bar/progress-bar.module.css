@@ -1,7 +1,14 @@
+.container {
+    align-items: center;
+    display: flex;
+    height: 20px;
+}
+
 .progressBox {
     background-color: #111;
     border-radius: 5px;
-    height: 20px;
+    height: 100%;
+    margin-right: 8px;
     min-width: 150px;
     padding: 2px 1px;
     width: 100%;
@@ -21,13 +28,6 @@
     border-radius: 4px;
     height: 100%;
     transition: width .5s ease-in-out;
-}
-
-.info {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4px;
 }
 
 @keyframes progress-animation {

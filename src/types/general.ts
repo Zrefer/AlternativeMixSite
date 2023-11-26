@@ -4,3 +4,5 @@ export enum Status {
   Succeeded = "succeeded",
   Failed = "failed",
 }
+
+export type NonEmptyArray<T> = [T, ...T[]];

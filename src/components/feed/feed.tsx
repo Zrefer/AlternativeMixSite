@@ -1,11 +1,13 @@
-import { FC, useEffect, useRef } from "react";
-import styles from "./feed.module.css";
-import Article from "../article/article";
 import { AppDispatch, RootState } from "../../services/store";
+import { FC, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import Article from "../article/article";
+import { Outlet } from "react-router";
+import { Status } from "../../types/general";
 import { fetchFeed } from "../../services/feed/actions";
 import genStyles from "../../styles/generalStyles.module.css";
-import { Status } from "../../types/actionStatus";
+import styles from "./feed.module.css";
 
 const feedSelector = (store: RootState) => {
   return store.feedStore;
@@ -68,6 +70,7 @@ const Feed: FC = () => {
             : "Загрузить ещё"}
         </button>
       )}
+      <Outlet />
     </section>
   );
 };

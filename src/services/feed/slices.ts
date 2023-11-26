@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Status } from "../../types/actionStatus";
 import { IArticle } from "../../types/article";
+import { Status } from "../../types/general";
+import { createSlice } from "@reduxjs/toolkit";
 import { fetchFeed } from "./actions";
 
 interface FeedState {

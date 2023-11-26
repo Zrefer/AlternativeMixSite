@@ -1,0 +1,17 @@
+.section {
+    width: 100%;
+}
+
+.title {
+    margin: 16px 0;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    padding: 16px;
+}
+
+.pageContainer {
+    margin-left: 16px;
+}

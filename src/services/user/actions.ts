@@ -7,6 +7,7 @@ import {
 } from "../../utils/api";
 
 import { IUser } from "../../types/user";
+import cabinetSlice from "../cabinet/slices";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import userSlice from "./slices";
 
@@ -51,6 +52,7 @@ export const logoutUser = createAsyncThunk<void, void>(
   "user/logoutUser",
   async (_, { dispatch }) => {
     dispatch(userSlice.actions.logout());
+    dispatch(cabinetSlice.actions.resetCabinet());
 
     const accessToken = localStorage.getItem("access-token");
     localStorage.removeItem("access-token");

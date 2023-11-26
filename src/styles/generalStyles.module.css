@@ -3,6 +3,15 @@
     border-radius: 1em;
 }
 
+.mainTitle {
+    align-self: center;
+    color: #EEE;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, .5);
+}
+
 .title {
     align-self: center;
     color: #EEE;

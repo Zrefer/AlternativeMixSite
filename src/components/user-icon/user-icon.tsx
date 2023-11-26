@@ -1,4 +1,7 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useLayoutEffect, useRef } from "react";
+
+import SteveSkin from "../../../public/images/steve-skin.png";
+import { loadImage } from "../../utils/utils";
 import styles from "./user-icon.module.css";
 
 const UserIcon: FC<{ playerName: string; extraClass?: string }> = ({
@@ -7,7 +10,7 @@ const UserIcon: FC<{ playerName: string; extraClass?: string }> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -15,33 +18,34 @@ const UserIcon: FC<{ playerName: string; extraClass?: string }> = ({
     if (!ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const image = new Image();
-    image.onload = () => {
-      const headSize = image.width / 8;
+    loadImage(
+      `http://files.mix-servers.com/web/skins/${playerName}.png`,
+      SteveSkin
+    )
+      .then((image) => {
+        if (!image) return;
 
-      const scaleX = canvas.width / headSize;
-      const scaleY = canvas.height / headSize;
-      ctx.drawImage(
-        image,
-        headSize,
-        headSize,
-        headSize,
-        headSize,
-        0,
-        0,
-        headSize * scaleX,
-        headSize * scaleY
-      );
-    };
+        const headSize = image.width / 8;
 
-    image.src = `http://files.mix-servers.com/web/skins/${playerName}.png`;
+        const scaleX = canvas.width / headSize;
+        const scaleY = canvas.height / headSize;
+        ctx.drawImage(
+          image,
+          headSize,
+          headSize,
+          headSize,
+          headSize,
+          0,
+          0,
+          headSize * scaleX,
+          headSize * scaleY
+        );
+      })
+      .catch((error) => console.log(error));
   }, [playerName]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={`${styles.canvas} ${extraClass}`}
-    ></canvas>
+    <canvas ref={canvasRef} className={`${styles.canvas} ${extraClass}`} />
   );
 };
 export default UserIcon;

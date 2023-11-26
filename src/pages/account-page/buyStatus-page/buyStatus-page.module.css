@@ -1,0 +1,78 @@
+.section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.mark {
+    background: rgba(255, 255, 255, .1);
+    box-sizing: border-box;
+    display: block;
+    margin-bottom: 30px;
+    padding: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.fields {
+    display: flex;
+    gap: 8px;
+}
+
+.field {
+    background: rgba(0, 0, 0, .4);
+    border: none;
+    border-radius: .5em;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, .5);
+    color: inherit;
+    height: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.fieldError {
+    outline: 2px solid crimson;
+}
+
+.sum {
+    align-self: center;
+    font-size: 18px;
+    padding: 8px;
+    white-space: nowrap;
+}
+
+.selectField option {
+    background-color: var(--solid-background-accent);
+}
+
+.errorMsg {
+    color: pink;
+    padding: 8px;
+}
+
+.confirmMsg {
+    padding: 8px;
+    text-align: center;
+}
+
+.buttons {
+    align-self: center;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    width: 80%;
+}
+
+.button {
+    align-self: center;
+    height: 40px;
+    margin-bottom: 30px;
+    width: 80%;
+}

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ProfileIcon from "../../../public/images/profile-icon.svg";
 import SavingsIcon from "../../../public/images/savings-icon.svg";
 import ShoppingIcon from "../../../public/images/shopping-icon.svg";
-import { Status } from "../../types/actionStatus";
+import { Status } from "../../types/general";
 import UserIcon from "../user-icon/user-icon";
 import genStyles from "../../styles/generalStyles.module.css";
 import { logoutUser } from "../../services/user/actions";
@@ -92,7 +92,7 @@ const UserMenu: FC = () => {
             <nav>
               <ul className={styles.linksList}>
                 <li>
-                  <Link to="#" className={styles.link}>
+                  <Link to="/account" className={styles.link}>
                     <ProfileIcon
                       className={styles.icon}
                       style={{ fill: "yellow" }}
