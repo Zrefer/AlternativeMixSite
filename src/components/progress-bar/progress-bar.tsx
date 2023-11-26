@@ -4,7 +4,7 @@ import styles from "./progress-bar.module.css";
 const ProgressBar: FC<{
   val: number;
   max: number;
-  name: string;
+  name?: string;
   color?: string;
   extraClass?: string;
 }> = ({ val, max, name, extraClass, color }) => {
@@ -18,12 +18,9 @@ const ProgressBar: FC<{
           style={{ width: progress, backgroundColor: color || "#55AAEE" }}
         />
       </div>
-      <div className={styles.info}>
-        <div className={styles.name}>{name}</div>
-        <div className={styles.value}>
-          {val}/{max}
-        </div>
-      </div>
+      <span className={styles.value}>
+        {val}/{max}
+      </span>
     </div>
   );
 };

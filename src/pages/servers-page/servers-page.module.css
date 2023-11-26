@@ -1,0 +1,9 @@
+.section {
+    width: 100%;
+}
+
+.serversList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px
+}

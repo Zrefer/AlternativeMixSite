@@ -12,7 +12,7 @@ import { FC } from "react";
 import { ILoginForm } from "../../types/forms";
 import { Link } from "react-router-dom";
 import Modal from "../modal/modal";
-import { Status } from "../../types/actionStatus";
+import { Status } from "../../types/general";
 import genStyles from "../../styles/generalStyles.module.css";
 import { loginUser } from "../../services/user/actions";
 import styles from "./login-menu.module.css";

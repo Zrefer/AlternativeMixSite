@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 import { Navigate, useLocation } from "react-router";
 
 import { RootState } from "../../services/store";
-import { Status } from "../../types/actionStatus";
+import { Status } from "../../types/general";
 import { useSelector } from "react-redux";
 
 interface ProtectedRouteProps {

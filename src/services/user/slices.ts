@@ -1,7 +1,7 @@
 import { fetchUser, loginUser, registerUser } from "./actions";
 
 import { IUser } from "../../types/user";
-import { Status } from "../../types/actionStatus";
+import { Status } from "../../types/general";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface UserState {

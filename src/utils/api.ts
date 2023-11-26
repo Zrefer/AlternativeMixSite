@@ -8,6 +8,7 @@ import {
 import { IArticlesData, IArticlesResponse } from "../types/article";
 import { ICabinetData, ICabinetResponse } from "../types/cabinet";
 import { ILoginResponse, IUser, IUserResponse } from "../types/user";
+import { IMonitoring, IMonitoringResponse } from "../types/monitoring";
 import axios, { AxiosError, AxiosResponse, Method } from "axios";
 
 import { IBuyGroupResponse } from "../types/buyStatus";
@@ -170,4 +171,12 @@ export const buyGroup = async (form: IBuyGroupForm) => {
     throw new Error("Unknown error");
   }
   throw new Error("No buyGroup data received");
+};
+
+export const fetchMonitoringRequest = async (): Promise<IMonitoring[]> => {
+  const response = await doRequest<IMonitoringResponse>(
+    `${baseUrl}/monitoring`
+  );
+  if (response.data) return response.data.servers ?? [];
+  throw new Error("Monitoring fetch error");
 };

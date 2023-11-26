@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FC } from "react";
 import { IRegisterForm } from "../../types/forms";
 import Modal from "../modal/modal";
-import { Status } from "../../types/actionStatus";
+import { Status } from "../../types/general";
 import genStyles from "../../styles/generalStyles.module.css";
 import { registerUser } from "../../services/user/actions";
 import styles from "./register-menu.module.css";
