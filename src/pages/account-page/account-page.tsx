@@ -98,6 +98,9 @@ const AccountPage: FC = () => {
               rotate: 30,
               SSRFactor: 3,
             }}
+            controls={{
+              zoom: true,
+            }}
           />
         </div>
         <div className={styles.pageContainer}>

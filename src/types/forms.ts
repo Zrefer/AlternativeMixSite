@@ -21,3 +21,9 @@ export interface IBuyGroupForm {
   monthsNum: number;
   serverId: string;
 }
+
+export interface IChangePassForm {
+  new_password: string;
+  new_password_confirmed: string;
+  password: string;
+}

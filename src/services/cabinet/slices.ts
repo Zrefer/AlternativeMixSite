@@ -18,7 +18,11 @@ const initialState: CabinetState = {
 export const cabinetSlice = createSlice({
   name: "cabinet",
   initialState,
-  reducers: {},
+  reducers: {
+    resetCabinet: () => {
+      return { ...initialState };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCabinet.pending, (state) => {

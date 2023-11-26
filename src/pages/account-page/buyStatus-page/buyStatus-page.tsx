@@ -161,7 +161,7 @@ const BuyStatusPage: FC = () => {
                 name="serverId"
                 className={`${genStyles.midText} ${styles.field} ${
                   styles.selectField
-                } ${formik.errors.serverId && styles.fieldError}`}
+                } ${formik.errors.serverId ? styles.fieldError : ""}`}
                 onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                   formik.handleChange(event);
                   formik.setFieldValue("groupName", "", false);
@@ -184,9 +184,9 @@ const BuyStatusPage: FC = () => {
                   as="select"
                   id="groupName"
                   name="groupName"
-                  className={`${genStyles.midText} ${styles.field}  ${
-                    formik.errors.groupName && styles.fieldError
-                  }`}
+                  className={`${genStyles.midText} ${styles.field} ${
+                    styles.selectField
+                  } ${formik.errors.groupName ? styles.fieldError : ""}`}
                   onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                     formik.handleChange(event);
                     setConfirmMsg(undefined);
@@ -217,7 +217,7 @@ const BuyStatusPage: FC = () => {
                     placeholder="Срок статуса"
                     min={1}
                     className={`${genStyles.midText} ${styles.field} ${
-                      formik.errors.monthsNum && styles.fieldError
+                      formik.errors.monthsNum ? styles.fieldError : ""
                     }`}
                   />
                   <p className={styles.sum}>{getTotalPrice(formik.values)}</p>

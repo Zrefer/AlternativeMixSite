@@ -1,6 +1,7 @@
 import {
   IAddFundsForm,
   IBuyGroupForm,
+  IChangePassForm,
   ILoginForm,
   IRegisterForm,
 } from "../types/forms";
@@ -68,6 +69,17 @@ export const logoutUserRequest = async (token: string) => {
 
 export const registerUserRequest = async (form: IRegisterForm) => {
   await doRequest(`${baseUrl}/api/register`, "POST", undefined, form);
+};
+
+export const changeUserPasswordRequest = async (form: IChangePassForm) => {
+  const accessToken = localStorage.getItem("access-token");
+  if (!accessToken) throw new Error("Token was null");
+
+  return await doRequest<{
+    status: number;
+    msg: string;
+    data: string[] | null;
+  }>(`${baseUrl}/api/change-password`, "POST", accessToken, form);
 };
 
 export const fetchUserRequest = async (token: string): Promise<IUser> => {
