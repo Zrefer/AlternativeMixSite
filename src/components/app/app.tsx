@@ -8,12 +8,16 @@ import BuyStatusPage from "../../pages/account-page/buyStatus-page/buyStatus-pag
 import CabinetPage from "../../pages/account-page/cabinet-page/cabinet-page";
 import Content from "../content/content";
 import Feed from "../feed/feed";
+import ItemBuyPage from "../../pages/shops-page/itemBuy-page/itemBuy-page";
 import LoginMenu from "../login-menu/login-menu";
 import MainPage from "../../pages/main-page/main-page";
 import NotFound404Page from "../../pages/not-found/not-found-page";
 import ProtectedRoute from "../protected-route/protected-route";
 import RegisterMenu from "../register-menu/register-menu";
 import ServersPage from "../../pages/servers-page/servers-page";
+import ShopPage from "../../pages/shops-page/shop-page/shop-page";
+import ShopsPage from "../../pages/shops-page/shops-page";
+import ShopsSelectPage from "../../pages/shops-page/shops-select-page/shops-select-page";
 import { fetchFeed } from "../../services/feed/actions";
 import { fetchUser } from "../../services/user/actions";
 import { useDispatch } from "react-redux";
@@ -49,6 +53,15 @@ const App: FC = () => {
               )}
             </Route>
             <Route path="servers" element={<ServersPage />} />
+          </Route>
+          <Route
+            path="shop"
+            element={<ProtectedRoute children={<ShopsPage />} />}
+          >
+            <Route index element={<ShopsSelectPage />} />
+            <Route path=":shopId" element={<ShopPage />}>
+              <Route path="buy/:itemId" element={<ItemBuyPage />} />
+            </Route>
           </Route>
           <Route
             path="account"

@@ -1,3 +1,4 @@
+import { AsyncThunkPayloadCreator, createAsyncThunk } from "@reduxjs/toolkit";
 import { ILoginForm, IRegisterForm } from "../../types/forms";
 import {
   fetchUserRequest,
@@ -8,7 +9,6 @@ import {
 
 import { IUser } from "../../types/user";
 import cabinetSlice from "../cabinet/slices";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import userSlice from "./slices";
 
 export const registerUser = createAsyncThunk<
@@ -60,17 +60,28 @@ export const logoutUser = createAsyncThunk<void, void>(
   }
 );
 
+const fetchUserSubThunk: AsyncThunkPayloadCreator<IUser> = async (
+  _,
+  { rejectWithValue }
+) => {
+  const accessToken = localStorage.getItem("access-token");
+  if (!accessToken) return rejectWithValue("Token was null");
+
+  try {
+    return await fetchUserRequest(accessToken);
+  } catch (error) {
+    if (error instanceof Error) return rejectWithValue(error.message);
+    return rejectWithValue("An unknown error occurred");
+  }
+};
+
 export const fetchUser = createAsyncThunk<IUser, void, { rejectValue: string }>(
   "user/fetchUser",
-  async (_, { rejectWithValue }) => {
-    const accessToken = localStorage.getItem("access-token");
-    if (!accessToken) return rejectWithValue("Token was null");
-
-    try {
-      return await fetchUserRequest(accessToken);
-    } catch (error) {
-      if (error instanceof Error) return rejectWithValue(error.message);
-      return rejectWithValue("An unknown error occurred");
-    }
-  }
+  fetchUserSubThunk
 );
+
+export const updateBalance = createAsyncThunk<
+  IUser,
+  void,
+  { rejectValue: string }
+>("user/updateBalance", fetchUserSubThunk);

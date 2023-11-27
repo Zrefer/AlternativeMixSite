@@ -101,7 +101,7 @@ const UserMenu: FC = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className={styles.link}>
+                  <Link to="/shop" className={styles.link}>
                     <ShoppingIcon
                       className={styles.icon}
                       style={{ fill: "lightskyblue" }}

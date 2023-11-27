@@ -4,6 +4,20 @@
   --solid-background-accent: #3b3f3f;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2F2F37;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8585AD;
+  border: 3px solid #2F2F37;
+  border-radius: 6px;
+}
+
 body {
   background-image: url("../../public/images/background.png");
   color: #DDD;

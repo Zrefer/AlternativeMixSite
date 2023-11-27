@@ -27,3 +27,10 @@ export interface IChangePassForm {
   new_password_confirmed: string;
   password: string;
 }
+
+export interface IBuyItemForm {
+  count: number;
+  enchant: Record<string, number>;
+  item_id: string;
+  shop_id: string;
+}

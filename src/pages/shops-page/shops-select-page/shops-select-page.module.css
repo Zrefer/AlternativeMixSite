@@ -1,0 +1,23 @@
+.shop {
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    gap: 30px;
+    padding: 16px;
+    transition: background-color .15s ease-in;
+}
+
+.shop:hover {
+    background: rgba(255, 255, 255, .125);
+}
+
+.shopIcon {
+    height: 64px;
+    width: 64px;
+}
+
+.shopName {
+    font-size: 24px;
+    font-weight: 500;
+}

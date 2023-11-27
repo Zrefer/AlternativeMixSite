@@ -1,11 +1,20 @@
 import {
   IAddFundsForm,
   IBuyGroupForm,
+  IBuyItemForm,
   IChangePassForm,
   ILoginForm,
   IRegisterForm,
 } from "../types/forms";
 import { IArticlesData, IArticlesResponse } from "../types/article";
+import {
+  IBuyItemResponse,
+  IShopBase,
+  IShopCategory,
+  IShopEnchant,
+  IShopItem,
+  IShopResponse,
+} from "../types/shop";
 import { ICabinetData, ICabinetResponse } from "../types/cabinet";
 import { ILoginResponse, IUser, IUserResponse } from "../types/user";
 import { IMonitoring, IMonitoringResponse } from "../types/monitoring";
@@ -179,4 +188,57 @@ export const fetchMonitoringRequest = async (): Promise<IMonitoring[]> => {
   );
   if (response.data) return response.data.servers ?? [];
   throw new Error("Monitoring fetch error");
+};
+
+const shopRequest = async <
+  T extends IShopBase | IShopItem | IShopCategory | IShopEnchant
+>(
+  url: string
+): Promise<T[]> => {
+  const accessToken = localStorage.getItem("access-token");
+  if (!accessToken) throw new Error("Token was null");
+
+  const response = await doRequest<IShopResponse>(url, "GET", accessToken);
+  if (response.data) return response.data as T[];
+  throw new Error("No shop data received");
+};
+
+export const fetchShopsRequest = async (): Promise<IShopBase[]> => {
+  return await shopRequest<IShopBase>(`${baseUrl}/api/shop`);
+};
+
+export const fetchShopItemsRequest = async (
+  shop_id: number
+): Promise<IShopItem[]> => {
+  return await shopRequest<IShopItem>(`${baseUrl}/api/shop/${shop_id}`);
+};
+
+export const fetchShopCategoriesRequest = async (
+  shop_id: number
+): Promise<IShopCategory[]> => {
+  return await shopRequest<IShopCategory>(
+    `${baseUrl}/api/shop-categories?shopId=${shop_id}`
+  );
+};
+
+export const fetchShopsEnchantsRequest = async (): Promise<IShopEnchant[]> => {
+  return await shopRequest<IShopEnchant>(`${baseUrl}/api/shop-enchants`);
+};
+
+export const buyItem = async (form: IBuyItemForm): Promise<string> => {
+  const accessToken = localStorage.getItem("access-token");
+  if (!accessToken) throw new Error("Token was null");
+
+  try {
+    const response = await doRequest<IBuyItemResponse>(
+      `${baseUrl}/api/shop-buy-item`,
+      "POST",
+      accessToken,
+      form
+    );
+    if (response.data) return response.data.massage;
+  } catch {
+    throw new Error("Unknown error");
+  }
+  throw new Error("No buyItem data received");
 };

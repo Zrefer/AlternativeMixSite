@@ -1,0 +1,131 @@
+.container {
+    width: 550px;
+}
+
+.info {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.itemImg {
+    background: rgba(255, 255, 255, .075);
+    border-radius: 16px;
+    height: 64px;
+    padding: 8px;
+    width: 64px;
+}
+
+.itemDesc {
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.enchantsTable {
+    border-spacing: 0;
+    width: 100%;
+}
+
+.enchantsTable td {
+    border-bottom: 1px solid rgba(255, 255, 255, .15);
+}
+
+.enchantsTable td:first-child {
+    padding-right: 30px;
+    width: 0;
+}
+
+.enchantsTable td:last-child {
+    text-align: center;
+    width: 50px;
+}
+
+.enchantsTable .enchantField {
+    width: 100%;
+}
+
+.enchantField {
+    appearance: none;
+    background: rgba(0, 0, 0, .4);
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .5);
+    cursor: pointer;
+    height: 20px;
+    outline: none;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.enchantField::-webkit-slider-thumb {
+    appearance: none;
+    background: dimgray;
+    border-radius: 3px;
+    height: 20px;
+    width: 10px;
+}
+
+.enchantField::-moz-range-thumb {
+    appearance: none;
+    background: dimgray;
+    border-radius: 3px;
+    height: 20px;
+    width: 10px;
+}
+
+.enchantField::-ms-thumb {
+    appearance: none;
+    background: dimgray;
+    border-radius: 3px;
+    height: 20px;
+    width: 10px;
+}
+
+.countRow {
+    align-items: center;
+    display: flex;
+}
+
+.countField {
+    background: rgba(0, 0, 0, .4);
+    border: none;
+    border-radius: .5em;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, .5);
+    color: inherit;
+    height: 40px;
+    margin-left: 16px;
+    text-align: center;
+    width: 100px;
+}
+
+.sum {
+    margin-left: auto;
+}
+
+.errorMsg {
+    color: pink;
+    padding: 8px;
+}
+
+.message {
+    background: rgba(255, 255, 255, .1);
+    box-sizing: border-box;
+    display: block;
+    margin-bottom: 30px;
+    padding: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+.button {
+    align-self: center;
+    height: 40px;
+    margin-top: 16px;
+    width: 80%;
+}

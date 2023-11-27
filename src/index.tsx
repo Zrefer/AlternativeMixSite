@@ -22,3 +22,7 @@ root.render(
 // TODO Change refs path to @
 // TODO Change some classNames to clx package
 // TODO Create selectors.ts
+// TODO Use table in statuses
+// TODO login / register menus to pages
+// TODO Apis to separate files
+// TODO add balance to shop and statuses

@@ -8,9 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { IBuyGroupForm } from "../../../types/forms";
 import { buyGroup } from "../../../utils/api";
 import { fetchCabinet } from "../../../services/cabinet/actions";
-import { fetchUser } from "../../../services/user/actions";
 import genStyles from "../../../styles/generalStyles.module.css";
 import styles from "./buyStatus-page.module.css";
+import { updateBalance } from "../../../services/user/actions";
 
 const cabinetSelector = (store: RootState) => {
   return store.cabinetStore.cabinet;
@@ -54,7 +54,7 @@ const BuyStatusPage: FC = () => {
           const msg = data.success || data.message;
           if (msg) {
             setMessage({ text: msg, isError: false });
-            dispatch(fetchUser());
+            dispatch(updateBalance());
             dispatch(fetchCabinet());
           }
         }

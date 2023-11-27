@@ -1,4 +1,4 @@
-import { fetchUser, loginUser, registerUser } from "./actions";
+import { fetchUser, loginUser, registerUser, updateBalance } from "./actions";
 
 import { IUser } from "../../types/user";
 import { Status } from "../../types/general";
@@ -42,6 +42,10 @@ export const userSlice = createSlice({
         state.authStatus = Status.Failed;
         state.user = null;
         state.error = action.error.message ?? "Unknown error";
+      })
+      .addCase(updateBalance.fulfilled, (state, action) => {
+        if (!state.user) return state;
+        state.user = { ...state.user, money: action.payload.money };
       })
       .addCase(loginUser.pending, (state) => {
         state.authStatus = Status.Loading;
