@@ -94,9 +94,9 @@ const SkinView: FC<SkinViewerProps> = ({
   // Load skin image in useEffect
   useEffect(() => {
     if (typeof skin.skin === "string") {
-      loadImage(skin.skin)
+      loadImage(skin.skin, { useCors: true })
         .then((image) => setSkinImage(image))
-        .catch((error) => console.log(error));
+        .catch();
     } else setSkinImage(skin.skin);
 
     return () => {
@@ -108,9 +108,9 @@ const SkinView: FC<SkinViewerProps> = ({
   useEffect(() => {
     if (skin.cape) {
       if (typeof skin.cape === "string") {
-        loadImage(skin.cape)
+        loadImage(skin.cape, { useCors: true })
           .then((image) => setCapeImage(image))
-          .catch((error) => console.log(error));
+          .catch();
       } else setCapeImage(skin.cape);
     }
 

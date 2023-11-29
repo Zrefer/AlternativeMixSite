@@ -6,7 +6,7 @@ import SkinView from "../../components/skin-view/skin-view";
 import SteveSkin from "../../../public/images/steve-skin.png";
 import Tabs from "../../components/tabs/tabs";
 import genStyles from "../../styles/generalStyles.module.css";
-import { loadImageNoCors } from "../../utils/utils";
+import { loadImage } from "../../utils/utils";
 import styles from "./account-page.module.css";
 import { useSelector } from "react-redux";
 
@@ -27,22 +27,17 @@ const AccountPage: FC = () => {
   const nick = useSelector(nickSelector);
 
   const [skinImage, setSkinImage] = useState<HTMLImageElement | ImageBitmap>();
-  const [capeImage, setCapeImage] = useState<HTMLImageElement | ImageBitmap>();
 
   useEffect(() => {
     if (nick) {
-      loadImageNoCors(`https://files.mix-servers.com/web/skins/${nick}.png`)
+      loadImage(`https://mixskins.zrefio.com/skins/${nick}.png`, {
+        useCors: true,
+      })
         .then((image) => setSkinImage(image))
-        .catch((error) => console.log(error));
-      loadImageNoCors(`https://files.mix-servers.com/web/cloaks/${nick}.png`)
-        .then((image) => setCapeImage(image))
-        .catch((error) => console.log(error));
+        .catch(() => {});
     }
 
-    return () => {
-      setSkinImage(undefined);
-      setCapeImage(undefined);
-    };
+    return () => setSkinImage(undefined);
   }, [nick]);
 
   const handleTabChange = (tab: string) => {
@@ -87,7 +82,7 @@ const AccountPage: FC = () => {
           <SkinView
             skin={{
               skin: skinImage || SteveSkin,
-              cape: capeImage,
+              cape: `https://mixskins.zrefio.com/cloaks/${nick}.png`,
               nameTag: nick,
             }}
             view={{
@@ -97,9 +92,6 @@ const AccountPage: FC = () => {
               zoom: 0.7,
               rotate: 30,
               SSRFactor: 3,
-            }}
-            controls={{
-              zoom: true,
             }}
           />
         </div>

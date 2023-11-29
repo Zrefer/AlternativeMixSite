@@ -18,10 +18,9 @@ const UserIcon: FC<{ playerName: string; extraClass?: string }> = ({
     if (!ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    loadImage(
-      `http://files.mix-servers.com/web/skins/${playerName}.png`,
-      SteveSkin
-    )
+    loadImage(`http://files.mix-servers.com/web/skins/${playerName}.png`, {
+      altSrc: SteveSkin,
+    })
       .then((image) => {
         if (!image) return;
 
@@ -41,7 +40,7 @@ const UserIcon: FC<{ playerName: string; extraClass?: string }> = ({
           headSize * scaleY
         );
       })
-      .catch((error) => console.log(error));
+      .catch();
   }, [playerName]);
 
   return (
